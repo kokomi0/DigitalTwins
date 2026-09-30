@@ -131,10 +131,12 @@ export const authService = {
     const user: UserProfile = {
       id: 1,
       username: `user_${phone.slice(-4)}`,
-      real_name: phone === '13808980001' ? '陈建国 (患者家属)' : '患者本人/家属',
+      real_name: phone === '13808980001' ? '张*民 (患者及家属)' : '患者本人/家属',
       role_code: 'patient_rep',
       role_name: ROLES_CONFIG.patient_rep.name,
-      institution: ROLES_CONFIG.patient_rep.institution,
+      institution: '三亚市人民医院',
+      department: '呼吸门诊慢病关爱中心',
+      staff_id: 'HN-2026-0928',
       title: ROLES_CONFIG.patient_rep.demoAccount.title,
       permissions: ['patient:view_3d_twin', 'patient:health_diary', 'patient:rehab_guidance']
     };
@@ -182,13 +184,29 @@ export const authService = {
       return { success: false, message: '账号或安全密码输入有误，请核实后重试' };
     }
 
+    const staffIdMap: Record<RoleCode, string> = {
+      pulmonologist: 'SYH-PULM-0248',
+      twin_engineer: 'SYU-HPC-1082',
+      reviewer: 'QC-HN-0056',
+      patient_rep: 'HN-2026-0928'
+    };
+
+    const deptMap: Record<RoleCode, { inst: string; dept: string }> = {
+      pulmonologist: { inst: '三亚市人民医院', dept: '呼吸与危重症医学科' },
+      twin_engineer: { inst: '三亚学院', dept: '超算与数字孪生重点实验室' },
+      reviewer: { inst: '海南省胸部影像质控中心', dept: '临床决策质控专委会' },
+      patient_rep: { inst: '三亚市人民医院', dept: '慢病健康管理中心' }
+    };
+
     const user: UserProfile = {
       id: role === 'pulmonologist' ? 2 : role === 'twin_engineer' ? 3 : 4,
       username: username,
       real_name: config.demoAccount.realName || `${config.name}专员`,
       role_code: role,
       role_name: config.name,
-      institution: config.institution,
+      institution: deptMap[role]?.inst || config.institution,
+      department: deptMap[role]?.dept || '临床业务部',
+      staff_id: staffIdMap[role] || 'STAFF-2026',
       title: config.demoAccount.title,
       permissions: [
         'twin:view_3d',

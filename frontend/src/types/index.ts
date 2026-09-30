@@ -1,4 +1,5 @@
 export * from './auth';
+export * from './navigation';
 
 export type RoleCode = 
   | 'pulmonologist' 
@@ -13,6 +14,8 @@ export interface UserProfile {
   role_code: RoleCode;
   role_name: string;
   institution: string;
+  department?: string;
+  staff_id?: string;
   title?: string;
   permissions: string[];
 }
@@ -159,3 +162,80 @@ export interface KnowledgeGraphData {
   nodes: KnowledgeGraphNode[];
   edges: KnowledgeGraphEdge[];
 }
+
+// ==========================================
+// 双中心临床协同平台核心类型定义
+// ==========================================
+export type ClinicalCenter = 'SANYA_COPD' | 'HUAXI_BRAIN';
+
+// 华西医院神经外科脑胶质瘤数字孪生患者元数据
+export interface BrainTumorPatientMeta {
+  id: number;
+  patient_uid: string;
+  anon_code: string;
+  patient_name: string;
+  gender: string;
+  age: number;
+  inpatient_no: string;
+  bed_no: string;
+  pathology: string;
+  tumor_location: string;
+  tumor_volume_cm3: number;
+  edema_volume_cm3: number;
+  kps_score: number;
+  molecular_markers: {
+    idh1: string;
+    mgmt: string;
+    tert: string;
+    codeletion_1p19q: string;
+  };
+  surgery_status: '术前评估中' | '入路规划就绪' | '放疗随访期';
+  rano_status: string;
+  safety_margin_mm: number;
+  primary_risks: string[];
+}
+
+// ATLAS Meditech 3D 虚拟手术路径规划参数
+export interface SurgicalTrajectory {
+  entryPoint: [number, number, number];
+  targetPoint: [number, number, number];
+  angleYaw: number;
+  anglePitch: number;
+  insertionDepthMm: number;
+  distanceToTumorMm: number;
+  distanceToVesselMm: number;
+  distanceToFunctionMm: number;
+  riskLevel: 'SAFE' | 'WARNING' | 'CRITICAL';
+}
+
+// Neosoma FDA 510(k) 纵向随访与真假进展数据
+export interface NeosomaFollowupPoint {
+  timepoint: string;
+  label: string;
+  date: string;
+  gtv_cm3: number; // 肿瘤肉眼体积
+  ctv_cm3: number; // 临床侵润区
+  ptv_cm3: number; // 计划放疗靶区
+  rcbv_ratio: number; // 相对脑血容量比值 (PWI)
+  cho_naa_ratio: number; // 胆碱/N-乙酰天门冬氨酸比值 (MRS)
+  pseudoprogression_prob: number; // 假性进展概率 %
+  true_progression_prob: number; // 真实进展概率 %
+  clinical_summary: string;
+}
+
+// 中美数字孪生仿真引擎对标工具
+export interface BenchmarkTool {
+  id: string;
+  name: string;
+  origin: string;
+  specialty: 'COPD' | 'BRAIN_TUMOR';
+  scorePracticality: number; // 临床实用性 0-100
+  scoreFidelity: number; // 机理保真度 0-100
+  scoreRealtime: number; // 实时性 0-100
+  regulatoryStatus: string; // FDA / CE / NMPA
+  coreTech: string;
+  pros: string[];
+  cons: string[];
+  clinicalAdoptionStatus: string;
+}
+

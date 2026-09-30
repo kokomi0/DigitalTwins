@@ -6,7 +6,9 @@ export const INITIAL_USER: UserProfile = {
   real_name: "王建平",
   role_code: "pulmonologist",
   role_name: "呼吸科临床主治医师",
-  institution: "三亚市人民医院 (呼吸与危重症医学科)",
+  institution: "三亚市人民医院",
+  department: "呼吸与危重症医学科",
+  staff_id: "SYH-PULM-0248",
   title: "主任医师 / 教授 / 博士生导师",
   permissions: ["clinical:ct_import", "clinical:3d_reading", "clinical:ai_prediction", "clinical:knowledge_graph"]
 };
@@ -275,3 +277,168 @@ export const ANATOMY_EDGES: AnatomyEdge[] = [
   { source: "LLB", target: "LB9", type: "BRANCHES_TO" },
   { source: "LLB", target: "LB10", type: "BRANCHES_TO" }
 ];
+
+// ==========================================
+// 四川大学华西医院 · 脑肿瘤科数字孪生仿真数据
+// ==========================================
+import { BrainTumorPatientMeta, NeosomaFollowupPoint, BenchmarkTool } from '../types';
+
+export const MOCK_BRAIN_PATIENT: BrainTumorPatientMeta = {
+  id: 101,
+  patient_uid: "HOSP-HX-NEURO-88201",
+  anon_code: "HX-GBM-2026-091",
+  patient_name: "赵*华",
+  gender: "男",
+  age: 54,
+  inpatient_no: "#HX-NEURO-2026-0091",
+  bed_no: "神外一病区 12床",
+  pathology: "胶质母细胞瘤 (Glioblastoma, GBM WHO IV级)",
+  tumor_location: "左侧额颞叶交界区 (Left Fronto-Temporal Cortex)",
+  tumor_volume_cm3: 38.6,
+  edema_volume_cm3: 24.5,
+  kps_score: 80,
+  molecular_markers: {
+    idh1: "野生型 (IDH1-wildtype)",
+    mgmt: "启动子甲基化阳性 (68% High)",
+    tert: "C228T 启动子突变",
+    codeletion_1p19q: "无联合缺失 (Intact)"
+  },
+  surgery_status: "入路规划就绪",
+  rano_status: "放疗后反应，假性进展概率 78.4%",
+  safety_margin_mm: 4.2,
+  primary_risks: [
+    "邻近左侧大脑中动脉 (MCA-M2分支) 距离 3.8mm",
+    "邻近 Broca 运动性语言中枢下缘 5.2mm",
+    "伴随左侧额叶深部弓状纤维束浸润风险"
+  ]
+};
+
+export const MOCK_NEOSOMA_FOLLOWUP: NeosomaFollowupPoint[] = [
+  {
+    timepoint: "Pre-op",
+    label: "术前基线评估 (Pre-op Baseline)",
+    date: "2026-06-15",
+    gtv_cm3: 38.6,
+    ctv_cm3: 54.2,
+    ptv_cm3: 72.8,
+    rcbv_ratio: 3.45,
+    cho_naa_ratio: 2.85,
+    pseudoprogression_prob: 5.0,
+    true_progression_prob: 95.0,
+    clinical_summary: "原发性富血供高增殖胶质母细胞瘤，侵犯额颞皮层"
+  },
+  {
+    timepoint: "Post-op M1",
+    label: "术后1个月 (Post-op Month 1)",
+    date: "2026-07-20",
+    gtv_cm3: 6.2,
+    ctv_cm3: 18.5,
+    ptv_cm3: 32.0,
+    rcbv_ratio: 0.95,
+    cho_naa_ratio: 1.10,
+    pseudoprogression_prob: 20.0,
+    true_progression_prob: 10.0,
+    clinical_summary: "显微神经外科近全切除 (GTR >95%)，术区边缘未见异常强化"
+  },
+  {
+    timepoint: "Post-op M3",
+    label: "术后3个月放化疗后 (Post-op Month 3)",
+    date: "2026-09-22",
+    gtv_cm3: 9.8,
+    ctv_cm3: 24.6,
+    ptv_cm3: 41.5,
+    rcbv_ratio: 1.15,
+    cho_naa_ratio: 1.42,
+    pseudoprogression_prob: 78.4,
+    true_progression_prob: 21.6,
+    clinical_summary: "瘤周出现新发强化信号伴轻度水肿。PWI显示低脑血容量(rCBV=1.15)，MRS未见高恶性Cho峰，判定为放化疗坏死所致【假性进展】，避免盲目二次手术！"
+  }
+];
+
+export const BENCHMARK_TOOLS_DATA: BenchmarkTool[] = [
+  {
+    id: "ltts_copd",
+    name: "LTTS Digital Twin Breathing Platform",
+    origin: "美国 (L&T Technology Services)",
+    specialty: "COPD",
+    scorePracticality: 95,
+    scoreFidelity: 92,
+    scoreRealtime: 90,
+    regulatoryStatus: "FDA 510(k) 临床前软件准入",
+    coreTech: "IoT可穿戴 + Navier-Stokes气流CFD + 气道阻抗多参数拟合",
+    pros: ["工程落地成熟度最高", "完整覆盖B1-B10阻力预测", "对标三亚人民医院临床急需"],
+    cons: ["对超算硬件配置有一定要求", "需配合患者高频吸气测量"],
+    clinicalAdoptionStatus: "三亚人民医院呼吸科当前深度对标实践原型"
+  },
+  {
+    id: "virtual_lung",
+    name: "Personalized Virtual Lung (PVL)",
+    origin: "美国 / 欧盟跨国联盟",
+    specialty: "COPD",
+    scorePracticality: 82,
+    scoreFidelity: 96,
+    scoreRealtime: 68,
+    regulatoryStatus: "CE-MDR 临床试验级认证",
+    coreTech: "有限元非线性弹性肺组织动力学 + 纳维-斯托克斯三维网格细分",
+    pros: ["生物力学微观机理最完善", "支持肺泡壁毛细血管气体交换仿真"],
+    cons: ["计算延迟较高(需3-5分钟离线解算)", "临床主治医师交互门槛偏高"],
+    clinicalAdoptionStatus: "作为科研离线验证对比底座"
+  },
+  {
+    id: "medical_avatars",
+    name: "Medical Avatars (Sim&Cure / Dassault)",
+    origin: "法国 / 达索系统",
+    specialty: "COPD",
+    scorePracticality: 88,
+    scoreFidelity: 85,
+    scoreRealtime: 94,
+    regulatoryStatus: "FDA / CE 双认证",
+    coreTech: "全息数字人解剖渲染 + 3D交互生理反馈",
+    pros: ["患者侧依从性高", "全息渲染视觉震撼", "UI友好"],
+    cons: ["对于微创介入治疗决策支撑粒度不足"],
+    clinicalAdoptionStatus: "集成于患者电子健康档案与数字人视口"
+  },
+  {
+    id: "atlas_meditech",
+    name: "ATLAS Meditech Neurosurgical Simulator",
+    origin: "美国 (ATLAS Meditech / 普渡大学合作)",
+    specialty: "BRAIN_TUMOR",
+    scorePracticality: 98,
+    scoreFidelity: 95,
+    scoreRealtime: 96,
+    regulatoryStatus: "FDA 510(k) 神经外科手术导航批准",
+    coreTech: "虚拟现实力反馈 + Willis环动态血流仿真 + 最优穿刺入路避障算法",
+    pros: ["显微手术入路避障成熟度98%", "精准保护Broca/Wernicke功能区", "华西医院神外首选"],
+    cons: ["高度依赖术前薄层MRI-DTI三维融合质量"],
+    clinicalAdoptionStatus: "华西医院脑肿瘤数字孪生工作台核心对标底座"
+  },
+  {
+    id: "neosoma",
+    name: "Neosoma Brain Tumor Assessment",
+    origin: "美国 (Neosoma Inc.)",
+    specialty: "BRAIN_TUMOR",
+    scorePracticality: 94,
+    scoreFidelity: 95,
+    scoreRealtime: 92,
+    regulatoryStatus: "FDA 510(k) K221290 批准",
+    coreTech: "多模态MRI自动勾画(GTV/CTV/PTV) + PWI/MRS真假进展机器学习分类器",
+    pros: ["鉴别假性进展临床吻合率92%+", "规避非必要二次开颅手术", "放疗靶区纵向追踪"],
+    cons: ["需输入规范标准的PWI/DWI磁共振序列"],
+    clinicalAdoptionStatus: "华西医院神经肿瘤术后随访与放疗放疗科标配"
+  },
+  {
+    id: "ariadne_tumortwin",
+    name: "Ariadne TumorTwin",
+    origin: "德国癌症研究中心 (DKFZ)",
+    specialty: "BRAIN_TUMOR",
+    scorePracticality: 78,
+    scoreFidelity: 88,
+    scoreRealtime: 75,
+    regulatoryStatus: "欧盟科研专用 (RUO)",
+    coreTech: "肿瘤细胞浸润偏微分方程(Reaction-Diffusion PDE) + 血管生成模型",
+    pros: ["前瞻性预测肿瘤浸润边缘生长趋势"],
+    cons: ["参数过于复杂，临床急诊手术难以实时部署"],
+    clinicalAdoptionStatus: "纳入前沿仿真对比矩阵与科研推演"
+  }
+];
+

@@ -10,17 +10,36 @@ MOCK_PATIENTS = [
         "id": 1,
         "patient_uid": "HOSP-ENC-9081244109",
         "anon_code": "SYU-COPD-2026-088",
+        "patient_name": "张*民",
         "gender": "男",
         "age": 68,
-        "gold_stage": "GOLD 3 (重度)",
-        "fev1_pred": 41.50,
+        "inpatient_no": "#HN-2026-0928",
+        "bed_no": "呼吸科 08床",
+        "gold_stage": "GOLD 3级 C组 (重度)",
+        "fev1_pred": 46.20,
         "fvc_liters": 2.65,
-        "fev1_fvc_ratio": 45.20,
+        "fev1_fvc_ratio": 46.20,
         "airway_resistance": 0.485,
-        "smoking_pack_years": 45,
-        "primary_lesion_segment": "RB3 (右上叶前段)",
+        "smoking_pack_years": 40,
+        "spo2_resting": 91,
+        "aecopd_risk_prob": 83.5,
+        "aecopd_risk_level": "HIGH",
+        "primary_lesion_segment": "RB3 (右上叶前段重构狭窄)",
         "hospital_cluster_id": "HOSP-SANYA-CLUSTER-01",
-        "university_task_id": "SYU-HPC-JOB-99214"
+        "university_task_id": "SYU-HPC-JOB-99214",
+        "laa_pct": 32.4,
+        "ct_scan_date": "2026-09-25 10:24",
+        "ct_series_id": "CT-THORAX-HRCT-0082",
+        "comorbidities": [
+            "高血压2级 (很高危)",
+            "慢性肺源性心脏病 (代偿期)",
+            "慢性呼吸衰竭 I 型 (低氧血症)"
+        ],
+        "current_meds": [
+            "布地奈德福莫特罗吸入粉雾剂 (ICS/LABA 160/4.5μg bid)",
+            "噻托溴铵粉雾剂 (LAMA 18μg qd)",
+            "乙酰半胱氨酸泡腾片 (0.6g bid)"
+        ]
     },
     {
         "id": 2,

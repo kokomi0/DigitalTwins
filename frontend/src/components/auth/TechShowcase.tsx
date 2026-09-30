@@ -114,17 +114,17 @@ export const TechShowcase: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/50 shadow-sm shadow-cyan-950/60 mb-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
             <span className="text-xs font-mono font-bold tracking-wide text-cyan-300">
-              B1-B10 · IASLC 1R-12L 数字孪生平台
+              USY 智慧医疗技术研究团队 · 自主研发
             </span>
             <span className="text-[10px] text-cyan-400/70 border-l border-cyan-800 pl-2 font-mono">
-              v2.6 临床验证版
+              9.27-V2 规范
             </span>
           </div>
 
           <h2 className="text-2xl xl:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-cyan-100 to-cyan-400 tracking-tight leading-snug">
-            全维度呼吸道数字孪生与
+            基于人工智能技术的
             <br />
-            超算流体生物力学仿真门户
+            慢性阻塞性肺病智慧治疗与管理服务系统
           </h2>
         </div>
       </div>

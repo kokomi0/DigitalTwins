@@ -59,7 +59,9 @@ export const api = {
     try {
       const res = await fetch(`${BASE_URL}/clinical/patients`);
       const json = await res.json();
-      if (json.code === 200) return json.data;
+      if (json.code === 200 && Array.isArray(json.data) && json.data.length > 0) {
+        return json.data.map((p: any) => ({ ...MOCK_PATIENT, ...p }));
+      }
     } catch (e) {
       console.warn('API /clinical/patients fallback');
     }

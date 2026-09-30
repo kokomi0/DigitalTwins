@@ -1,20 +1,185 @@
-# 人体数字孪生（肺部）交互系统
-## Pulmonary Digital Twin Interactive System (Clinical & Supercomputing Edition)
+<div align="center">
+
+# 🫁 人体数字孪生（肺部与多中心器官）临床交互系统
+### Pulmonary & Multi-Organ Digital Twin Interactive System
+*(Clinical & Supercomputing Edition · 临床医护 / 算法工程 / 慢病患者 / 质控复核 多端全景版)*
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Release-v2.5_Stable-06b6d4?style=for-the-badge&logo=medscape&logoColor=white" alt="Version" />
+  <img src="https://img.shields.io/badge/Three.js-r164_WebGL2-10b981?style=for-the-badge&logo=three.dot.js&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/Frontend-React_18_%7C_Vite_%7C_TS-38bdf8?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/Backend-Python_3.10_%7C_Flask_%7C_SocketIO-f59e0b?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Database-MySQL_8_+_Neo4j_+_MongoDB-8b5cf6?style=for-the-badge&logo=neo4j&logoColor=white" alt="Database" />
+  <img src="https://img.shields.io/badge/Guideline-GOLD_2026_Compliant-rose?style=for-the-badge&logo=healthdotgov&logoColor=white" alt="GOLD" />
+  <img src="https://img.shields.io/badge/License-MIT-slate?style=for-the-badge" alt="License" />
+</p>
+
+<p align="center">
+  <b>三亚市人民医院 (呼吸与危重症医学科)</b> ✕ <b>四川大学华西医院 (脑肿瘤科)</b> ✕ <b>三亚学院 (超算与数字孪生重点实验室)</b><br/>
+  联合构建的面向量算闭环、AI 临床决策辅助与慢病居家康复的全周期数字孪生平台
+</p>
+
+[✨ 核心功能亮点](#-核心功能亮点) • 
+[🖥️ 电脑看板与手机模拟](#️-电脑端全景看板--手机真机模拟器双模架构) • 
+[🏥 双中心数字孪生](#-跨院区双中心器官数字孪生架构) • 
+[🚀 快速启动](#-部署与快速启动指南) • 
+[🔑 体验演示账号](#-五类角色预置演示账号) • 
+[📁 工程目录](#-完整项目工程目录树)
 
 ---
 
-### 一、 系统简介与核心架构
+</div>
 
-本系统是严格按照《人体数字孪生（肺部）系统架构设计》及呼吸科临床解剖规范（覆盖主支气管、叶段支气管 **B1-B10** 各段解剖、**IASLC 1R-12L** 超声支气管镜 EBUS 淋巴结分站定位）构建的高精度、自适应数字孪生平台。
+## 📌 项目概述
 
-系统针对电脑端临床工作站与移动端巡诊场景，实现【PC端 / 手机端响应式自适应】：
-- **PC端（≥1024px）**：三栏专业临床工作台（左侧 B1-B10 解剖树与病例库、中间 3D 视口、实时气道压波形与双超算态势、右侧 COPD 指标与 AI 诊疗报告）。
-- **手机端（<1024px）**：全屏触控 3D 视口 + 底部可拖拽抽屉面板（Bottom Sheet，基于 Framer Motion）+ 触控手势（单指旋转、双指缩放平移）+ 低功耗 LOD 自动降级。
-- **双超算集群脱敏专线**：模拟**三亚市人民医院超算（院内加密私网）**与**三亚学院超算（脱敏仿真与大模型推理集群）**之间的安全栅栏与加密流转。
+本系统严格遵循国家医疗大模型与数字孪生前沿临床规范，覆盖**胸部薄层 CT 影像四步 AI 分割体重建**、**支气管树 B1-B10 各解剖段**、**IASLC 1R-12L 超声支气管镜 (EBUS) 淋巴结定位**、**CFD 流体力学仿真**以及**慢病患者居家 7×24h 智能预警与康复打卡**。
+
+系统全面支持【**电脑端宽屏全景健康看板**】与【**iPhone 16 Pro 手机真机模拟器**】在界面右上角一键无缝自由切换，并横跨**海南三亚市人民医院 (COPD 呼吸慢病)** 与 **四川大学华西医院 (神经外科脑胶质瘤孪生)** 双中心临床业务。
 
 ---
 
-### 二、 完整项目工程目录树
+## 🖥️ 电脑端全景看板 / 手机真机模拟器双模架构
+
+针对慢病患者与家属端，彻底告别单调留黑边，提供全网领先的双模交互体验：
+
+| 交互形态 | 视口展示模式 | 核心设计与临床业务能力 |
+| :--- | :--- | :--- |
+| **🖥️ 电脑端全景健康看板**<br/>*(Desktop Patient Portal)* | 宽屏自适应两栏布局<br/>(占比 45% : 55%) | • **左侧主力区**：大尺寸 3D 翡翠健康微光数字肺，支持 360° 自由旋转/缩放、18次/分呼吸舒张收缩动效、清透气流呼吸粒子流；发光环形微仪表盘显示 **84 / 100 分**（良好）；三亚海棠湾温湿度天气；7×24h 智能预警防护条。<br/>• **右侧管理区**：实时静息血氧 (96%)、心率 (74bpm)、呼吸频率 (18次/分) 及过去 7 天平滑面积波动曲线；今日吸入剂用药打卡与倒计时；可视化呼吸节拍引导器（吸气4s➔屏气2s➔慢呼气6s）；王主任随访留言与紧急直连医生 (SOS) 调度台。 |
+| **📱 手机真机模拟器**<br/>*(Mobile Simulator)* | iPhone 16 Pro 金属拉丝边框<br/>+ 居中灵动岛 (Dynamic Island) | • 仿真高品质移动端视口，内部完整运行《呼吸健康伴侣 · 患者端》。<br/>• 底部 5 大核心 Tab：`[🫁 肺视界]`、`[📋 今日任务]`、`[🔔 智能预警]`、`[💬 医患随访]`、`[🚨 急救SOS]`。<br/>• 支持接收医生端下发的调药处方并一键确认同步至打卡闭环，支持生成内网二维码真机扫码体验。 |
+
+> **无缝模式切换**：在界面右上角通过药丸切换器 `[🖥️ 电脑端全景看板]` / `[📱 手机真机模拟]` 即可随时一键切换，并支持与左侧 8 项业务菜单实时联动！
+
+---
+
+## 🏥 跨院区双中心器官数字孪生架构
+
+系统内置双中心一键无缝热切换能力：
+
+```mermaid
+graph LR
+    A[器官数字孪生总控制台] --> B[三亚市人民医院 · 呼吸慢病中心]
+    A --> C[四川大学华西医院 · 脑肿瘤科工作室]
+
+    B --> B1[3D 气管树 B1-B10 腔内探查]
+    B --> B2[EBUS 1R-12L 淋巴分站超声穿刺]
+    B --> B3[COPD 气道阻力 & 颤振动力学仿真]
+    B --> B4[GOLD 2026 临床知识图谱 CDSS 决策]
+
+    C --> C1[多模态 MRI 四色水肿/浸润体积解算]
+    C --> C2[Neosoma 级瘤周水肿渗透前沿推演]
+    C --> C3[中美前沿仿真工具临床决策选型看板]
+```
+
+### 1. 三亚市人民医院（呼吸科 / COPD 数字孪生中心）
+- **高精半透明解剖结构**：主气管、左右主支气管、叶段支气管 B1-B10，病变狭窄段（RB3）呼气相剧烈气道颤振（Airway Fluttering）；
+- **虚拟支气管镜 (Virtual Bronchoscopy)**：管腔内壁透视、管壁红肿水肿与分泌物模拟；
+- **IASLC 1R-12L EBUS 探查**：气管、奇静脉弓、升主动脉、肺动脉与上腔静脉空间毗邻及超声回声特征；
+- **COPD 全周期推演**：模拟三联吸入药物（LABA+LAMA+ICS）干预下 6~24 个月 FEV1 与气道阻力改善趋势。
+
+### 2. 四川大学华西医院（脑肿瘤科 / 脑胶质瘤数字孪生工作室）
+- **多模态 MRI 体积多色渲染**：对比增强肿瘤区（Enhancing Tumor）、瘤周水肿带（Edema）、坏死核心（Necrosis）、非增强肿瘤成分；
+- **水肿浸润深度分析**：计算浸润侵袭前沿（Infiltration Margin）与皮层功能区（运动区/语言区）的距离；
+- **中美主流数字孪生仿真系统决策选型看板**：深度对比华西自主研发系统与西门子、FEI、Neosoma 的临床实用性与科研选型指标。
+
+---
+
+## ✨ 核心功能亮点
+
+| 模块名称 | 临床/技术特性 | 用户体验 |
+| :--- | :--- | :--- |
+| **3D 肺孪生阅片视界** | Three.js WebGL2 PBR 物理渲染，次表面散射材质（SSS），支持正位、侧位、仰视全角度观察。 | 鼠标自由旋转/缩放，呼吸节律自然律动。 |
+| **CT 影像导入与重建** | 4 步 AI 多尺度分割重建流水线（体素提取 ➔ 气道拓扑平滑 ➔ 肺叶封装 ➔ 仿真绑定）。 | 实时进度反馈与三维切片预览。 |
+| **10Hz 呼吸时序推流** | WebSocket 高频实时推送气道压 $P_{aw}$、流速 $V'$、顺应性 $C_{rs}$、阻力 $R_{aw}$ 双曲线波形。 | ECharts 平滑动态面积图，毫秒级响应。 |
+| **知识图谱 CDSS 决策** | 基于 Neo4j 图数据库，融合 GOLD 2026 指南阶梯推理，提供 AECOPD 72h 风险评估与调药闭环。 | 临床证据链可追溯，一键下发处方。 |
+| **多角色 RBAC 隔离** | 严格区分主治医师、算法工程师、质控复核员、患者及家属、合规法务 5 类角色专属工作台。 | 顶栏一键切换角色体验，数据安全物理隔离。 |
+| **区块链级合规审计** | SHA-256 哈希链记录医师会诊、参数调优、处方下达与质控签批，防篡改验真。 | 完整医疗法律凭证，合规可溯。 |
+
+---
+
+## 🔑 五类角色预置演示账号
+
+系统在界面顶栏提供**“演示账号便捷切换栏”**，点击对应角色卡片即可直接切换，亦可通过传统登录窗口登录：
+
+> 🔐 **全局演示密码**：`TwinAdmin2026!`
+
+| 角色中文名称 | 用户名 (`username`) | 预置姓名与职称 | 专属工作台与核心能力 |
+| :--- | :--- | :--- | :--- |
+| **呼吸科临床主治医师** | `dr_wang` | 王主任 (主任医师/教授) | 3D肺阅片、CT重建、内窥镜、EBUS分站、病变标注、病情推演、CDSS决策、EHR全景 |
+| **慢病患者及家属** | `patient_chen` | 张老伯 / 陈家属 | **【电脑端全景看板】与【手机真机模拟】一键切换**、3D健康肺、用药打卡、缩唇呼吸操、紧急SOS |
+| **数字孪生算法工程师** | `eng_zhang` | 张工 (仿真工程师) | 网格拓扑、LOD0/1/2多尺度调度、PyBullet力学微调、CFD流体动力学、WebGL 60 FPS Profiler |
+| **临床诊疗质控员** | `reviewer_li` | 李质控 (副主任医师) | 双盲诊疗方案复核（92.4%一致率）、GOLD合规审查、XAI可解释性推理、质控报告CA签批 |
+| **医患合规法务员** | `legal_zhao` | 赵法务 (合规总监) | 敏感隐私脱敏专线审查、医疗操作全链路追溯、SHA-256 区块链防篡改验真 |
+
+---
+
+## 🚀 部署与快速启动指南
+
+### ⚡ 极速启动（Windows 双击即开 · 推荐）
+直接在项目根目录双击运行 [`start.bat`](start.bat)：
+- 自动检测并展示本地局域网 IP；
+- 并行拉起 Flask 后端（5000 端口）与 Vite 前端（3000 端口）；
+- 自动在终端绘制 ASCII 二维码，手机直接扫码即可在真机上体验！
+
+---
+
+### 方式 1：本地极速开发与调试运行（无 Docker 依赖）
+> 本系统内置**高可用模拟代理（Mock Fallback）**，即便本地未安装 MySQL 或 Neo4j 实体服务，前端与后端亦可即时启动并顺畅运转！
+
+#### 1. 启动后端 (Flask + SocketIO)
+```bash
+# 1. 打开终端进入后端目录
+cd backend
+
+# 2. 安装 Python 核心依赖 (推荐 Python 3.10+)
+pip install -r requirements.txt
+
+# 3. 启动后端服务
+python app.py
+```
+> 控制台输出：`监听地址: http://0.0.0.0:5000` | `WebSocket: ws://0.0.0.0:5000/socket.io`
+
+#### 2. 启动前端 (Vite + React)
+```bash
+# 1. 打开新终端进入前端目录
+cd frontend
+
+# 2. 安装前端 npm 依赖
+npm install
+
+# 3. 启动 Vite 开发热更新服务器
+npm run dev
+```
+> 控制台输出：`Local: http://localhost:3000/`，在浏览器打开即可进入系统！
+
+---
+
+### 方式 2：Docker Compose 一键容器化部署（全栈生产模式）
+```bash
+# 1. 在项目根目录下一键构建并启动 6 大微服务容器
+docker-compose up -d --build
+
+# 2. 检查各容器健康状态
+docker-compose ps
+```
+> 容器启动完成后，MySQL、Neo4j、MongoDB 将自动执行 `database/` 下的初始化脚本，并在 `http://localhost:8080` 开放访问。
+
+---
+
+## 🌐 系统访问端点清单
+
+| 访问入口 | 地址 URL | 说明 |
+| :--- | :--- | :--- |
+| **系统综合访问门户** | `http://localhost:3000/` | 自动根据屏幕识别，默认进入自适应临床工作站 |
+| **慢病患者端电脑宽屏看板** | `http://localhost:3000/` 切换为患者角色 | 默认展示宽屏大尺寸 3D 肺与综合体征看板 |
+| **慢病患者端手机模拟器** | 右上角点击 `[📱 手机真机模拟]` | iPhone 16 Pro 拟态仿真体验 |
+| **真机扫码访问** | `http://<局域网IP>:3000/` | 手机连接同 Wi-Fi 即可全功能触控体验 |
+| **后端 RESTful API** | `http://localhost:5000/api/` | 临床数据、患者指标与决策推演接口 |
+| **后端 WebSocket 实时推流** | `ws://localhost:5000/socket.io/` | 10Hz 呼吸力学与体征时序推流 |
+| **Neo4j 图数据库控制台** | `http://localhost:7474/` | 用户名: `neo4j`，密码: `TwinAdmin2026!` |
+
+---
+
+## 📁 完整项目工程目录树
 
 ```text
 f:/数字孪生项目/
@@ -23,206 +188,63 @@ f:/数字孪生项目/
 │   ├── config.py                          # 混合数据库与双超算集群连接配置
 │   ├── requirements.txt                   # Python 核心依赖清单
 │   ├── Dockerfile                         # 后端 Docker 镜像构建文件
-│   ├── models/                            # 异构数据库数据模型定义
-│   │   ├── __init__.py
-│   │   ├── mysql_models.py                # MySQL 8.0: 用户表、RBAC权限、防篡改审计日志、病例表
-│   │   ├── mongo_models.py                # MongoDB 6.0: 仿真时序帧、DICOM体素、AI诊疗报告
-│   │   └── graph_models.py                # Neo4j 5.x: B1-B10 气道拓扑与 1R-12L 淋巴结图谱
+│   ├── models/                            # 异构数据库数据模型定义 (MySQL + Mongo + Neo4j)
 │   ├── routes/                            # RESTful API 蓝图控制器
-│   │   ├── __init__.py
-│   │   ├── auth_routes.py                 # 用户认证与五角色体验切换演示器接口
-│   │   ├── clinical_routes.py             # 病例查询、DICOM特征、病变标注与康复推演
+│   │   ├── auth_routes.py                 # 用户认证与五角色体验切换接口
+│   │   ├── clinical_routes.py             # 病例查询、DICOM特征、病变标注与处方
 │   │   ├── simulation_routes.py           # CFD流体参数微调、时序波形与超算负载监控
-│   │   ├── graph_routes.py                # 气道知识图谱、EBUS镜下细节与狭窄波及路径
+│   │   ├── graph_routes.py                # 气道知识图谱、EBUS镜下细节与狭窄路径
 │   │   └── audit_routes.py                # 医疗合规审计、哈希链验真与脱敏专线态势
-│   ├── services/                          # 核心业务与生理仿真解算层
-│   │   ├── __init__.py
-│   │   ├── desensitization_proxy.py       # 院内敏感数据脱敏模拟器 (Data Desensitization Proxy)
-│   │   ├── physiological_simulation.py    # 4D 呼吸动力学、COPD气道阻力(Raw)与颤振仿真
-│   │   ├── knowledge_graph_service.py     # 临床解剖知识图谱查询与狭窄推理
-│   │   └── audit_service.py               # 区块链式 SHA-256 哈希链记录与防篡改验真
-│   └── tasks/
-│       ├── __init__.py
-│       └── celery_app.py                  # Celery 异步解算任务 (Navier-Stokes CFD仿真)
+│   └── services/                          # 核心业务与生理仿真解算层
+│       ├── desensitization_proxy.py       # 院内敏感数据脱敏流控代理
+│       ├── physiological_simulation.py    # 4D 呼吸动力学、COPD气道阻力与颤振解算
+│       ├── knowledge_graph_service.py     # 临床解剖知识图谱查询与狭窄推理
+│       └── audit_service.py               # 区块链式 SHA-256 防篡改审计流水
 ├── frontend/                              # 前端工程 (React 18 + Vite + TS + Three.js + Tailwind)
-│   ├── package.json                       # 前端核心依赖配置
-│   ├── vite.config.ts                     # Vite 打包与代理配置 (反向代理 /api 与 /socket.io)
-│   ├── tsconfig.json                      # TypeScript 编译选项
-│   ├── tsconfig.node.json
-│   ├── tailwind.config.js                 # 医疗科技暗黑风格色彩与微发光样式配置
-│   ├── postcss.config.js
-│   ├── index.html                         # 单页应用 HTML 入口
-│   ├── Dockerfile                         # 前端生产环境构建 Dockerfile
-│   └── src/
-│       ├── main.tsx                       # React 根挂载入口
-│       ├── App.tsx                        # 电脑端三栏 / 手机端抽屉双模自适应主视图
-│       ├── index.css                      # 全局暗黑拟态样式与平滑滚动条
-│       ├── types/                         # TypeScript 接口与类型定义
-│       │   └── index.ts
-│       ├── hooks/                         # 响应式与时序推流自定义 Hooks
-│       │   ├── useResponsive.ts           # 屏幕尺寸、横竖屏、触控能力与推荐LOD识别
-│       │   └── useSocketSimulation.ts     # 10Hz WebSocket 生理时序接收与离线平滑正弦保底
-│       ├── services/                      # API 与解剖基线数据
-│       │   ├── api.ts                     # RESTful API 客户端调用
-│       │   └── mockData.ts                # B1-B10 各段坐标基线与 1R-12L 淋巴结标准分站
-│       └── components/
-│           ├── 3d/
-│           │   └── TwinViewer3D.tsx       # Three.js/R3F 支气管树、1R-12L荧光球、呼吸颤振视口
-│           ├── clinical/
-│           │   ├── AnatomyTree.tsx        # B1-B10 支气管树与 1R-12L 淋巴结分站交互树
-│           │   ├── AirwayWaveformChart.tsx# ECharts 气道压 Paw 与流速实时时序双曲线波形
-│           │   ├── EBUSModal.tsx          # 1R-12L 超声支气管镜下声像特征与大血管解剖弹窗
-│           │   └── ClinicalPanel.tsx      # 多角色自适应临床控制面板路由器
-│           ├── common/
-│           │   ├── Header.tsx             # 顶部导航、脱敏标识、设备状态与角色切换器
-│           │   ├── RoleSwitcher.tsx       # 5类角色一键体验切换下拉组件
-│           │   ├── DataFlowPipeline.tsx   # 双超算集群数据流转与脱敏栅栏态势图
-│           │   └── ResponsiveDrawer.tsx   # 手机端触摸可拖拽抽屉组件 (Framer Motion)
-│           └── roles/                     # 5 类业务角色专属面板
-│               ├── EngineerView.tsx       # 孪生工程师：线框网格、LOD控制、参数调优、超算负载
-│               ├── PulmonologistView.tsx  # 呼吸科医护：临床面板、病变标注、康复推演、AI报告
-│               ├── ReviewerView.tsx       # 诊疗复核员：只读模式、双盲质控标记、专家签名
-│               ├── PatientView.tsx        # 患者代表：通俗化大白话3D解读、家庭缩唇呼吸口诀
-│               └── LegalAuditView.tsx     # 医患法务：操作轨迹追溯、SHA-256防篡改哈希验真
-├── database/                              # 数据库初始化架构脚本
-│   ├── init_mysql.sql                     # MySQL 8.0: RBAC权限、防篡改审计日志表与初始病例
-│   ├── init_neo4j.cypher                  # Neo4j 5.x: 气管树 B1-B10 拓扑与 1R-12L 淋巴分站图谱
-│   └── init_mongo.js                      # MongoDB 6.0: 时序呼吸帧、DICOM体素特征与大模型报告
-├── docker-compose.yml                     # 全套微服务 (6大容器) 一键编排
-├── nginx.conf                             # Nginx 自适应路由重写、Gzip压缩与WebSocket代理
+│   ├── src/
+│   │   ├── App.tsx                        # 多角色主工作区调度与全局状态中心
+│   │   ├── components/                    # 通用组件与临床业务模块
+│   │   │   ├── 3d/TwinViewer3D.tsx        # 医生端 3D 支气管树与 EBUS 视口
+│   │   │   ├── navigation/                # 侧边栏多中心菜单导航组件
+│   │   │   └── common/                    # 顶栏、架构图弹窗、扫码弹窗、错误边界
+│   │   └── views/                         # 各角色专属业务工作台视口
+│   │       ├── patient/                   # 【患者及家属端】核心目录
+│   │       │   ├── PatientWorkbench.tsx   # 双模调度主入口
+│   │       │   ├── PatientDesktopPortal.tsx # 电脑端宽屏全景健康看板
+│   │       │   ├── PatientMobileSimulator.tsx # 手机真机模拟器
+│   │       │   └── components/            # 大尺寸 3D 肺视界与模式切换药丸
+│   │       ├── doctor/                    # 呼吸科主治医师 8 大业务视口 (阅片/CT/EBUS/CDSS等)
+│   │       ├── brain/                     # 华西脑肿瘤数字孪生工作室 (MRI体积解算/3D视界)
+│   │       ├── engineer/                  # 数字孪生算法工程师工作台
+│   │       ├── reviewer/                  # 临床质控员复核工作台
+│   │       ├── mobile/                    # 移动端 APP 核心视图组件
+│   │       └── research/                  # 医院超算科研驾驶舱
+├── database/                              # 数据库初始化架构脚本 (MySQL, Neo4j, Mongo)
+├── docker-compose.yml                     # 全套微服务一键编排配置
+├── nginx.conf                             # Nginx 自适应路由重写与反向代理
+├── start.bat                              # Windows 一键全自动启动脚本 (含局域网IP与终端二维码)
 └── README.md                              # 项目技术架构与访问操作手册
 ```
 
 ---
 
-### 三、 异构混合数据库设计规范
+## 🗄️ 异构混合数据库设计架构
 
 | 数据库引擎 | 核心职责 | 存储实体与集合 | 关键业务逻辑 |
 | :--- | :--- | :--- | :--- |
-| **MySQL 8.0** | 关系型主库 / RBAC / 审计 | `sys_user`, `sys_role`, `sys_permission`, `sys_role_permission`, `audit_log`, `patient_meta` | 细粒度操作控制、链式 SHA-256 防篡改审计记录，保证医疗合规。 |
-| **Neo4j 5.x** | 临床解剖知识图谱 | 节点: `Bronchus`, `LymphNode`, `Lobe`, `LesionZone`<br/>关系: `BRANCHES_TO`, `ADJACENT_TO`, `OCCLUDES` | 支气管分叉拓扑（主气管→左右主支气管→B1-B10），1R-12L淋巴结与大血管毗邻关系，狭窄波及路径推理。 |
-| **MongoDB 6.0** | 仿真时序帧与半结构化医疗文档 | `simulation_frames`, `dicom_features`, `ai_evaluations` | 存储 4D 呼吸周期形变压降时序、CT 体素密度云特征（LAA-950%）及 BioMedLM 大模型病情解读报告。 |
+| **MySQL 8.0** | 关系型主库 / RBAC / 审计 | `sys_user`, `sys_role`, `audit_log`, `patient_meta` | 细粒度操作控制、链式 SHA-256 防篡改审计记录，保证医疗合规。 |
+| **Neo4j 5.x** | 临床解剖知识图谱 | 节点: `Bronchus`, `LymphNode`, `Lobe`<br/>关系: `BRANCHES_TO`, `ADJACENT_TO` | 支气管分叉拓扑（主气管→左右主支气管→B1-B10），1R-12L 淋巴结毗邻关系与狭窄波及推理。 |
+| **MongoDB 6.0** | 仿真时序帧与半结构化文档 | `simulation_frames`, `dicom_features`, `ai_evaluations` | 存储 4D 呼吸周期形变压降时序、CT 体素密度云特征（LAA-950%）及 BioMedLM 大模型报告。 |
 | **Redis 7.0** | 高速缓存与异步消息中间件 | Celery 任务队列、WebSocket 推流缓存 | 承载气道流体力学 Navier-Stokes CFD 方程解算任务调度。 |
 
 ---
 
-### 四、 五类角色体验演示账号
+## 📄 许可证说明
 
-系统在界面右上角提供**“一键切换角色体验”演示器**，支持在无需重复登出的情况下即时体验 5 类角色的业务功能。若使用传统登录，各角色预置账号密码如下：
+本项目遵循 **MIT License** 开源授权协议。  
+数字孪生仿真解算模型与医疗知识图谱数据仅供科研与临床教学使用，实际诊疗方案请遵医嘱。
 
-> **统一演示密码**：`TwinAdmin2026!`
-
-| 角色中文名称 | 账号标识符 (`username`) | 预置姓名与职称 | 核心权限与交互特性 |
-| :--- | :--- | :--- | :--- |
-| **数字孪生工程师** | `eng_zhang` | 张工 (超算仿真架构师) | 开启几何多边形网格线框 (Wireframe)、调节 COPD 气道狭窄与阻力系数、LOD 分级切换、监控超算 64 节点算力负载与 FPS。 |
-| **呼吸科主任医护** | `dr_wang` | 王主任 (主任医师/教授) | 查阅患者 FEV1/FVC 生理基线、在 3D 气管树标注气道狭窄（如 RB3）、调用超算大模型 AI 诊疗建议、下达肺康复推演。 |
-| **诊疗质量复核员** | `reviewer_li` | 李质控 (副主任医师) | 双盲复核只读模式（自动隐匿患者敏感隐私）、诊疗规范合规性勾选、签署会诊质控意见。 |
-| **患者/家属代表** | `patient_chen` | 陈先生 (患者家属代表) | 科普化通俗视图、隐匿复杂工程指标，展示“吸管捏扁”形象化比喻及每日“缩唇腹式呼吸”口诀。 |
-| **医患合规法务员** | `legal_zhao` | 赵法务 (首席法务官) | 敏感数据脱敏栅栏流控审查、医疗操作留痕时序流、一键执行 **全链 SHA-256 区块链防篡改验真**。 |
-
----
-
-### 五、 系统访问地址清单
-
-服务启动后，支持以下各端入口访问：
-
-- **自适应访问入口（自动识别电脑端/手机端设备）**：  
-  👉 `http://localhost:8080/`（Docker 部署模式）或 `http://localhost:3000/`（本地开发模式）
-- **电脑端临床工作台直接入口（≥1024px 三栏布局）**：  
-  👉 `http://localhost:8080/desktop` 或 `http://localhost:3000/`
-- **手机端触控模式直接入口（全屏触控 + 底部抽屉手势）**：  
-  👉 手机与电脑连入同一 Wi-Fi，访问 `http://<局域网IP>:3000/`，或在网页右上角点击【📱 手机扫码】直接扫码打开！
-- **后端 RESTful API 基础地址**：  
-  👉 `http://localhost:5000/api/`
-- **后端 WebSocket 实时推流端点**：  
-  👉 `ws://localhost:5000/socket.io/`
-- **Neo4j 图数据库浏览器控制台**：  
-  👉 `http://localhost:7474/`（用户: `neo4j`，密码: `TwinAdmin2026!`）
-
-> 📖 **详细启动与手机扫码教程详见**：[STARTUP_GUIDE.md](file:///f:/%E6%95%B0%E5%AD%97%E5%AD%AA%E7%94%9F%E9%A1%B9%E7%9B%AE/STARTUP_GUIDE.md)
-
----
-
-### 六、 部署与快速启动指南
-
-#### 极速启动（Windows 双击即开，推荐）：
-直接在根目录双击运行 [`start.bat`](file:///f:/%E6%95%B0%E5%AD%97%E5%AD%AA%E7%94%9F%E9%A1%B9%E7%9B%AE/start.bat)，系统将自动拉起前后端服务，并在主窗口自动检测局域网 IP、直接输出手机扫码的二维码！
-
-
-#### 方式 1：Docker Compose 一键容器化部署（全栈生产模式）
-
-确保宿主机已安装 Docker 及 Docker Compose，随后在项目根目录下执行：
-
-```bash
-# 1. 进入项目根目录
-cd f:/数字孪生项目
-
-# 2. 一键构建并启动 6 大微服务容器
-docker-compose up -d --build
-
-# 3. 检查各容器健康状态
-docker-compose ps
-```
-
-容器启动完成后，MySQL、Neo4j、MongoDB 将自动执行 `database/` 下的初始化脚本，并在 `http://localhost:8080` 开放访问。
-
----
-
-#### 方式 2：本地极速开发与调试运行（无 Docker 依赖）
-
-本系统各层均内置**高可用降级代理（Mock Fallback）**，即便本地未安装 MySQL 或 Neo4j 实体服务，后端与前端亦可即时启动并顺畅运转！
-
-##### 1. 启动后端 (Flask + SocketIO)
-
-```bash
-# 1. 打开终端进入后端目录
-cd f:/数字孪生项目/backend
-
-# 2. 安装 Python 核心依赖 (推荐 Python 3.10+)
-pip install -r requirements.txt
-
-# 3. 启动后端实时服务
-python app.py
-```
-> 控制台将输出：
-> `监听地址: http://0.0.0.0:5000`  
-> `WebSocket: ws://0.0.0.0:5000/socket.io`
-
-##### 2. 启动前端 (Vite + React)
-
-```bash
-# 1. 打开新终端进入前端目录
-cd f:/数字孪生项目/frontend
-
-# 2. 安装前端 npm 依赖
-npm install
-
-# 3. 启动 Vite 开发热更新服务器
-npm run dev
-```
-> 控制台将输出本地开发地址：`http://localhost:3000/`。在浏览器打开即可开始体验！
-
----
-
-### 七、 核心操作演示路径
-
-1. **观察 3D 气管树与呼吸运动**：
-   - 观察主气管（Trachea）、右肺三叶（B1-B10）、左肺二叶（B1-B10）及半透明肺叶轮廓随呼吸正弦曲线周期性扩张收缩；
-   - 观察右肺上叶前段（**RB3**）红色病变区域在呼气相的剧烈气道颤振（Airway Fluttering）；
-   - 查看底部 ECharts 实时绘制的 10Hz 连续气道压（$P_{aw}$）与气流速度波形。
-
-2. **超声支气管镜（EBUS）探查体验**：
-   - 点击视口内或解剖树中的 **7站（隆突下）** 或 **4R站（右下气管旁）** 荧光球；
-   - 触发弹出超声支气管镜下声像学特征弹窗，查看其与奇静脉弓、肺动脉、上腔静脉的毗邻解剖与穿刺指引。
-
-3. **一键切换 5 大角色**：
-   - 点击右上角切换至 **数字孪生工程师**：开启 Wireframe 网格模式，拖动滑块调节狭窄率，观察 3D 模型变化与超算节点负载；
-   - 切换至 **呼吸科医护**：查看 FEV1 指标与 BioMedLM 大模型报告，点击“解剖段标注”或“启动康复推演”；
-   - 切换至 **患者代表**：查看科普化大白话说明与家庭缩唇呼吸口诀；
-   - 切换至 **医患法务**：点击“全链哈希验真”，即时验证 SHA-256 区块链防篡改审计链。
-
-4. **双超算流转与脱敏专线演练**：
-   - 查看“双超算集群数据流转态势图”；
-   - 点击“测试脱敏推送”按钮，模拟医院端原始 DICOM 经由安全脱敏栅栏清洗并实时传输至三亚学院超算中心。
-#   D i g i t a l T w i n s  
- 
+<div align="center">
+  <p><b>人体数字孪生（多中心器官）联合项目组</b><br/>
+  © 2026 Sanya People's Hospital & West China Hospital & Sanya University. All Rights Reserved.</p>
+</div>
